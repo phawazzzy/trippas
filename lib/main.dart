@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flat_icons_flutter/flat_icons_flutter.dart';
+import 'package:trippas/screens/create_trip.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,16 +13,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Material(
-          child: Scaffold(
+      routes: <String, WidgetBuilder> {
+        '/createTrip': (BuildContext context) => CreateTrip(),
+      },
+      home: Scaffold(
         body: HomePage(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-
-          },
-          child: Icon(Icons.add),
-        ),
-      )),
+        floatingActionButton: Builder(builder: (BuildContext context) {
+          return FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/createTrip');
+            },
+            child: Icon(Icons.add),
+          );
+        })
+      ),
     );
   }
 }
@@ -121,20 +126,6 @@ class _FlightsState extends State<Flights> {
   @override
   Widget build(BuildContext context) {
     return Card(
-//      height: 200.0,
-//      padding: EdgeInsets.all(10.0),
-//      decoration: BoxDecoration(
-////        boxShadow: [
-////          BoxShadow(color: Colors.grey, blurRadius: 25.0, spreadRadius: 5.0)
-////        ],
-//        shape: BoxShape.rectangle,
-//        border: Border.all(
-////          color: Colors.black12,
-//          width: 1,
-//        ),
-//        borderRadius: BorderRadius.circular(12),
-//      ),
-//
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -150,7 +141,8 @@ class _FlightsState extends State<Flights> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'nunito-bold'),
                 ),
-                Icon(FlatIcons.paper_plane_1),
+//                Icon(FlatIcons.paper_plane_1),
+                FaIcon(FontAwesomeIcons.plane, size: 15.0, color: Colors.grey.shade400,),
                 Text(
                   'London',
                   style: TextStyle(
@@ -226,7 +218,7 @@ class _FlightsState extends State<Flights> {
                       color: Colors.blue),
                 ),
                 IconButton(
-                    icon: Icon(FlatIcons.more_1,),
+                    icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 15.0, color: Colors.grey.shade500,),
                     onPressed: () {
                       print('this is the button');
                     })
