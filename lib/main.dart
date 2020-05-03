@@ -13,20 +13,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/createTrip': (BuildContext context) => CreateTrip(),
       },
       home: Scaffold(
-        body: HomePage(),
-        floatingActionButton: Builder(builder: (BuildContext context) {
-          return FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/createTrip');
-            },
-            child: Icon(Icons.add),
-          );
-        })
-      ),
+          body: HomePage(),
+          floatingActionButton: Builder(builder: (BuildContext context) {
+            return FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/createTrip');
+              },
+              child: Icon(Icons.add),
+            );
+          })),
     );
   }
 }
@@ -42,8 +41,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Container(
         color: Colors.white,
-        padding:
-            EdgeInsets.only(top: 24.0, left: 27.0, right: 19.0),
+        padding: EdgeInsets.only(top: 24.0, left: 27.0, right: 19.0),
         child: Column(
           children: <Widget>[
             Row(
@@ -104,10 +102,7 @@ class _HomePageState extends State<HomePage> {
                   return Flights();
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.white
-                    ),
+                    const Divider(height: 20.0, color: Colors.white),
               ),
             )
           ],
@@ -122,7 +117,10 @@ class Flights extends StatefulWidget {
   _FlightsState createState() => _FlightsState();
 }
 
+enum WhyFarther { delete, update }
+
 class _FlightsState extends State<Flights> {
+  WhyFarther _selection;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -142,7 +140,11 @@ class _FlightsState extends State<Flights> {
                       fontFamily: 'nunito-bold'),
                 ),
 //                Icon(FlatIcons.paper_plane_1),
-                FaIcon(FontAwesomeIcons.plane, size: 15.0, color: Colors.grey.shade400,),
+                FaIcon(
+                  FontAwesomeIcons.plane,
+                  size: 15.0,
+                  color: Colors.grey.shade400,
+                ),
                 Text(
                   'London',
                   style: TextStyle(
@@ -213,15 +215,29 @@ class _FlightsState extends State<Flights> {
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(5.0),
+                        Radius.circular(3.0),
                       ),
-                      color: Colors.blue),
+                      color: Colors.orange),
                 ),
-                IconButton(
-                    icon: FaIcon(FontAwesomeIcons.ellipsisV, size: 15.0, color: Colors.grey.shade500,),
-                    onPressed: () {
-                      print('this is the button');
-                    })
+                PopupMenuButton<WhyFarther>(
+                  offset: Offset(3, 0),
+                  onSelected: (WhyFarther result) {
+                    setState(() {
+                      _selection = result;
+                    });
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<WhyFarther>>[
+                    const PopupMenuItem<WhyFarther>(
+                      value: WhyFarther.delete,
+                      child: Text('Update')
+                    ),
+                    const PopupMenuItem<WhyFarther>(
+                      value: WhyFarther.delete,
+                      child: Text('Delete'),
+                    ),
+                  ],
+                )
               ],
             ),
           ],
