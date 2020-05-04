@@ -111,6 +111,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
 class Flights extends StatefulWidget {
   @override
   _FlightsState createState() => _FlightsState();
@@ -213,10 +214,11 @@ class _FlightsState extends State<Flights> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(3.0),
-                      ),
-                      color: Color(0xFFfe3f6d)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(3.0),
+                    ),
+                    color: Color(0xFFfe3f6d),
+                  ),
                 ),
                 PopupMenuButton<WhyFarther>(
                   offset: Offset(3, 0),
@@ -228,9 +230,7 @@ class _FlightsState extends State<Flights> {
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<WhyFarther>>[
                     const PopupMenuItem<WhyFarther>(
-                      value: WhyFarther.delete,
-                      child: Text('Update')
-                    ),
+                        value: WhyFarther.delete, child: Text('Update')),
                     const PopupMenuItem<WhyFarther>(
                       value: WhyFarther.delete,
                       child: Text('Delete'),
