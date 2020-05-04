@@ -1,6 +1,7 @@
-//import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 void main() => runApp(CreateTrip());
 
@@ -17,8 +18,8 @@ class CreateTrip extends StatelessWidget {
                 children: <Widget>[
                   Row(children: <Widget>[
                     IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
+                        icon: FaIcon(
+                         FontAwesomeIcons.chevronLeft,
                           size: 30.0,
                         ),
                         onPressed: () {

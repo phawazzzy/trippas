@@ -111,7 +111,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
 class Flights extends StatefulWidget {
   @override
   _FlightsState createState() => _FlightsState();
@@ -217,7 +216,7 @@ class _FlightsState extends State<Flights> {
                       borderRadius: BorderRadius.all(
                         Radius.circular(3.0),
                       ),
-                      color: Colors.orange),
+                      color: Color(0xFFfe3f6d)),
                 ),
                 PopupMenuButton<WhyFarther>(
                   offset: Offset(3, 0),
